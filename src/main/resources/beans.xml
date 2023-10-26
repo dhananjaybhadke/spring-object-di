@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+
+    <!--    Problem is whenever we want the mathcheat obj value we need to add that classpath in inner bean every time-->
+    <!--    and this not good practice because we will end up creating multiple mathcheat objs unnecessarily-->
+    <!--    <bean id="student" class="com.springcore.Student">-->
+    <!--        <property name="id" value="69"/>-->
+    <!--        <property name="mathCheat">-->
+    <!--            <bean class="com.springcore.MathCheat"/>-->
+    <!--        </property>-->
+    <!--    </bean>-->
+
+    <!--    <bean id="aStu" class="com.springcore.AnotherStudent">-->
+    <!--        <property name="mathCheat">-->
+    <!--            <bean class="com.springcore.MathCheat"/>-->
+    <!--        </property>-->
+    <!--    </bean>-->
+
+    <!--    Intead created the objs inside create the separate bean for MathCheat and give ref of that in inner bean whenever needed-->
+
+    <bean id="mathCheatObjValue" class="com.springcore.MathCheat"/>
+
+    <bean id="student" class="com.springcore.Student">
+        <property name="id" value="23"/>
+        <property name="mathCheat" ref="mathCheatObjValue"/>
+    </bean>
+
+    <bean id="aStu" class="com.springcore.AnotherStudent">
+        <property name="mathCheat" ref="mathCheatObjValue"/>
+    </bean>
+
+</beans>
